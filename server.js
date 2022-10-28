@@ -1,8 +1,11 @@
-require('dotenv').config(path: './.env');
+require('dotenv').config({ path: './config.env' });
 const express = require('express');
 
 const app = express();
+app.use(express.json());
+
+app.use('/api/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Alpha app listening on port ${port}!`))
+app.listen(PORT, () => console.log(`Alpha app listening on port ${PORT}!`));
